@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brite Matriculation School</title>
+<style>
+:root {
+  --primary: #1b365d;
+  --accent: #f4b41a;
+  --light: #f5f7fb;
+  --text: #222;
+  --shadow: 0 12px 40px rgba(15,23,42,0.12);
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--light);
+  color: var(--text);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(12, 32, 70, 0.98);
+  color: #fff;
+  box-shadow: var(--shadow);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+header.hidden {
+  transform: translateY(-100%);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1em 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fff, #f8fafc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(244, 180, 26, 0.3);
+  overflow: hidden;
+}
+.logo-placeholder {
+  color: var(--primary);
+  font-weight: 900;
+  font-size: 1.4rem;
+}
+.brand-text h1 {
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+}
+.tagline {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  font-style: italic;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 2em;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+nav a:hover {
+  color: var(--accent);
+}
+.scroll-target {
+  height: 90px;
+  margin-top: -90px;
+  visibility: hidden;
+}
+.hero {
+  margin-top: 80px;
+  min-height: 85vh;
+  background: linear-gradient(
+      135deg,
+      rgba(27, 54, 93, 0.9) 0%,
+      rgba(6, 24, 65, 0.85) 50%
+    ),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'><rect fill='%231b365d' width='1200' height='800'/><circle fill='%23f4b41a' opacity='0.1' cx='200' cy='200' r='150'/><circle fill='%23f4b41a' opacity='0.05' cx='1000' cy='600' r='200'/><path fill='%23f4b41a' opacity='0.08' d='M300 100 Q500 50 700 150 Q900 250 1100 100'/></svg>");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 2em 1em;
+}
+.hero-inner {
+  max-width: 800px;
+}
+.hero-badge {
+  display: inline-block;
+  padding: 0.4em 1.2em;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.5em;
+  backdrop-filter: blur(10px);
+}
+.hero h2 {
+  font-size: 2.8rem;
+  margin-bottom: 1em;
+  font-weight: 700;
+}
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 2em;
+}
+.square-section {
+  max-width: 1100px;
+  margin: 4em auto;
+  display: flex;
+  gap: 3em;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 2em;
+}
+.square-card {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 3em 2.5em;
+  flex: 1 1 450px;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+.square-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.2);
+}
+.square-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.2em;
+  color: var(--primary);
+}
+.square-card p {
+  font-size: 1.05rem;
+  color: #475569;
+  line-height: 1.7;
+}
+#life {
+  max-width: 1200px;
+  margin: 0 auto 4em;
+  padding: 0 2em;
+}
+#life h3 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 0.5em;
+  color: var(--primary);
+}
+#life .section-sub {
+  text-align: center;
+  font-size: 1.15rem;
+  color: #64748b;
+  margin-bottom: 3em;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.life-gallery {
+  display: flex;
+  gap: 1.5em;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.life-item {
+  position: relative;
+  flex: 1 1 33%;
+  min-width: 300px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.4s ease;
+  height: 380px;
+}
+.life-item:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 30px 70px rgba(15, 23, 42, 0.25);
+}
+.life-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.life-item:hover img {
+  transform: scale(1.1);
+}
+.life-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 25px;
+  background: rgba(27, 54, 93, 0.9);
+  color: #fff;
+  font-size: 1.25rem;
+  padding: 0.6em 1.2em;
+  border-radius: 12px;
+  font-weight: 600;
+  backdrop-filter: blur(15px);
+}
+#contact {
+  max-width: 1000px;
+  margin: 0 auto 4em;
+  padding: 0 2em;
+}
+#contact h3 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 0.5em;
+  color: var(--primary);
+}
+#contact .section-sub {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #64748b;
+  margin-bottom: 3em;
+}
+.contact-wrap {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.contact-card,
+.location-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 2em;
+  box-shadow: var(--shadow);
+  flex: 1 1 450px;
+}
+.contact-card h4 {
+  color: var(--primary);
+  margin-bottom: 1em;
+  font-size: 1.3rem;
+}
+
+.enquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 1em 1.2em;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+.form-btn {
+  background: linear-gradient(135deg, var(--primary), #2c5282);
+  color: white;
+  border: none;
+  padding: 1.2em 2em;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.success-msg {
+  display: none;
+  background: #10b981;
+  color: white;
+  padding: 1em;
+  margin-top: 1em;
+  border-radius: 12px;
+}
+
+footer {
+  background: linear-gradient(135deg, #0b172e 0%, #1e293b 100%);
+  color: #cbd5e1;
+  text-align: center;
+  padding: 2.5em 2em 5em;
+  position: relative;
+}
+
+#backToTop {
+  position: fixed;
+  right: 2em;
+  bottom: 2em;
+  background: var(--accent);
+  color: #222;
+  border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  font-size: 1.2rem;
+  display: none;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="logo"><div class="logo-placeholder">B</div></div>
+      <div class="brand-text">
+        <h1>Brite Matriculation School</h1>
+        <div class="tagline">From Spark to Sun</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#about-section">About</a>
+      <a href="#life">School Life</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Dindigul · Matriculation · Day School</div>
+    <h2>Nurturing bright minds</h2>
+    <p>Brite Matriculation School offers focused, values-driven education where every child is known by name, encouraged to grow, and guided to shine.</p>
+  </div>
+</section>
+
+<div class="scroll-target" id="about-section"></div>
+
+<section class="square-section">
+  <div class="square-card">
+    <h3>🌟 About Brite</h3>
+    <p>Calm, friendly campus with small class sizes and dedicated teachers. Strong academics, spoken English, and co-curricular activities help every student discover their talents.</p>
+  </div>
+  <div class="square-card">
+    <h3>🎯 Our Mission</h3>
+    <p>Building disciplined, compassionate, confident learners ready for tomorrow's challenges through academics, values, and independent thinking.</p>
+  </div>
+</section>
+
+<section id="life">
+  <h3>School Life</h3>
+  <p class="section-sub">Balanced learning through academics, sports, and creative activities</p>
+  <div class="life-gallery">
+    <div class="life-item">
+      <img src="https://drive.google.com/uc?export=view&id=1s0njfk7br009b7-AVRnlFNg4AO3nE21P" />
+      <div class="life-caption">Classroom Learning</div>
+    </div>
+    <div class="life-item">
+      <img src="https://drive.google.com/uc?export=view&id=1A1_y0muE4YOZOWBmMuS_xnLJc5jzIZcm" />
+      <div class="life-caption">Sports & Games</div>
+    </div>
+    <div class="life-item">
+      <img src="https://drive.google.com/uc?export=view&id=1QOqyOp2qsAtLc6da5EAiaYhqSjmKvf7K" />
+      <div class="life-caption">Events & Celebrations</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h3>📍 Location & Contact</h3>
+  <p class="section-sub">Easily accessible from surrounding neighbourhoods</p>
+
+  <div class="contact-wrap">
+
+    <div class="location-card">
+      <h4>🏫 Campus Address</h4>
+      <address>Brite Matriculation School<br>Dindigul, Tamil Nadu</address>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3892.245626317593!2d78.6007367!3d12.6973849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bada8fd4fb8f9c1%3A0xf2beb32bfde8ea89!2sBRITE%20MATRICULATION%20SCHOOL!5e0!3m2!1sen!2sin!4v1764309192795!5m2!1sen!2sin" width="100%" height="380" style="border:0;border-radius:16px" loading="lazy"></iframe>
+    </div>
+
+    <div class="contact-card">
+      <h4>✉️ Enquiry Form</h4>
+
+      <form class="enquiry-form"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfsaOojVEvYSaeYbgnqdQ-NuXc0A7M_5MRYlAtUNdLsd0cpCg/formResponse"
+        method="POST"
+        onsubmit="return handleSubmit(event)">
+
+        <div class="form-row">
+          <div class="form-group"><input type="text" name="entry.2005628234" placeholder="Parent / Guardian Name *" required></div>
+          <div class="form-group"><input type="text" name="entry.635780253" placeholder="Student Name *" required></div>
+        </div>
+
+        <div class="form-group">
+          <select name="entry.1069008234" required>
+            <option value="">Class *</option>
+            <option>LKG</option><option>UKG</option><option>Class 1</option><option>Class 2</option>
+            <option>Class 3</option><option>Class 4</option><option>Class 5</option>
+            <option>Class 6</option><option>Class 7</option><option>Class 8</option>
+            <option>Class 9</option><option>Class 10</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group"><input type="tel" name="entry.2005618234" placeholder="Mobile Number *" required></div>
+          <div class="form-group"><input type="email" name="entry.1166974018" placeholder="Email (optional)"></div>
+        </div>
+
+        <div class="form-group">
+          <textarea name="entry.1779240673" rows="4" placeholder="Enquiry *" required></textarea>
+        </div>
+
+        <button type="submit" class="form-btn">Submit Enquiry</button>
+      </form>
+
+      <!-- Success Message -->
+      <div id="success" class="success-msg">
+        ✅ Your enquiry has been submitted. We will respond soon.
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Brite Matriculation School · From Spark to Sun
+</footer>
+
+<button id="backToTop">↑</button>
+
+<script>
+let lastScrollY = 0;
+
+// Hide header on scroll
+window.addEventListener("scroll", () => {
+  const header = document.querySelector("header");
+  const scrollY = window.scrollY;
+
+  header.classList.toggle("hidden", scrollY > 150 && scrollY > lastScrollY);
+  document.getElementById("backToTop").style.display =
+    scrollY > 400 ? "flex" : "none";
+
+  lastScrollY = scrollY;
+});
+
+// Back to top
+document.getElementById("backToTop").onclick = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+// Form Submit Handler
+function handleSubmit(event) {
+  event.preventDefault();
+
+  const form = document.querySelector(".enquiry-form");
+  const successBox = document.getElementById("success");
+
+  const formData = new FormData(form);
+
+  fetch(form.action, {
+    method: "POST",
+    body: formData,
+    mode: "no-cors"
+  })
+    .then(() => {
+      successBox.style.display = "block";
+      form.reset();
+      setTimeout(() => {
+        successBox.style.display = "none";
+      }, 5000);
+    })
+    .catch(() => {
+      alert("Something went wrong. Please try again.");
+    });
+
+  return false;
+}
+</script>
+
+</body>
+</html>
